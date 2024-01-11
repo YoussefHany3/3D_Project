@@ -9,50 +9,50 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
-int ctimee = 0;
+float scalingFactor = 2.0f;
 
 float cubeVertices[] = {
-    -0.5f, -0.5f, -0.5f, 0.0f,0.0f,-1.0f, 0.0f, 0.0f, 
-     0.5f, -0.5f, -0.5f, 0.0f,0.0f,-1.0f,  1.0f, 0.0f,
-     0.5f,  0.5f, -0.5f, 0.0f,0.0f,-1.0f,  1.0f, 1.0f,
-     0.5f,  0.5f, -0.5f, 0.0f,0.0f,-1.0f,  1.0f, 1.0f,
-    -0.5f,  0.5f, -0.5f, 0.0f,0.0f,-1.0f,  0.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f, 0.0f,0.0f,-1.0f,  0.0f, 0.0f,
-
-    -0.5f, -0.5f,  0.5f, 0.0f,0.0f,1.0f,  0.0f, 0.0f,//front
-     0.5f, -0.5f,  0.5f, 0.0f,0.0f,1.0f, 1.0f, 0.0f,
-     0.5f,  0.5f,  0.5f, 0.0f,0.0f,1.0f, 1.0f, 1.0f,
-     0.5f,  0.5f,  0.5f, 0.0f,0.0f,1.0f, 1.0f, 1.0f,
-    -0.5f,  0.5f,  0.5f, 0.0f,0.0f,1.0f, 0.0f, 1.0f,
-    -0.5f, -0.5f,  0.5f, 0.0f,0.0f,1.0f, 0.0f, 0.0f,
-
-    -0.5f,  0.5f,  0.5f, -1.0f,0.0f,0,  1.0f, 0.0f,//left
-    -0.5f,  0.5f, -0.5f, -1,0,0,  1.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f, -1,0,0,  0.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f, -1,0,0,  0.0f, 1.0f,
-    -0.5f, -0.5f,  0.5f, -1,0,0,  0.0f, 0.0f,
-    -0.5f,  0.5f,  0.5f, -1,0,0,  1.0f, 0.0f,
-
-     0.5f,  0.5f,  0.5f,  1,0,0,  1.0f, 0.0f,//right
-     0.5f,  0.5f, -0.5f,  1,0,0,  1.0f, 1.0f,
-     0.5f, -0.5f, -0.5f,  1,0,0,  0.0f, 1.0f,
-     0.5f, -0.5f, -0.5f,  1,0,0,  0.0f, 1.0f,
-     0.5f, -0.5f,  0.5f,  1,0,0,  0.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,  1,0,0,  1.0f, 0.0f,
-
-    -0.5f, -0.5f, -0.5f,  0,-1,0, 0.0f, 1.0f,//bottom
-     0.5f, -0.5f, -0.5f,  0,-1,0, 1.0f, 1.0f,
-     0.5f, -0.5f,  0.5f,  0,-1,0, 1.0f, 0.0f,
-     0.5f, -0.5f,  0.5f,  0,-1,0, 1.0f, 0.0f,
-    -0.5f, -0.5f,  0.5f,  0,-1,0, 0.0f, 0.0f,
-    -0.5f, -0.5f, -0.5f,  0,-1,0, 0.0f, 1.0f,
-
-    -0.5f,  0.5f, -0.5f,  0,1,0, 0.0f, 1.0f,//top
-     0.5f,  0.5f, -0.5f,  0,1,0, 1.0f, 1.0f,
-     0.5f,  0.5f,  0.5f,  0,1,0, 1.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,  0,1,0, 1.0f, 0.0f,
-    -0.5f,  0.5f,  0.5f,  0,1,0, 0.0f, 0.0f,
-    -0.5f,  0.5f, -0.5f,  0,1,0, 0.0f, 1.0f
+    -0.5f *scalingFactor, -0.5f * scalingFactor, -0.5f * scalingFactor, 0.0f,0.0f,-1.0f, 0.0f, 0.0f, 
+     0.5f *scalingFactor, -0.5f * scalingFactor, -0.5f * scalingFactor, 0.0f,0.0f,-1.0f,  1.0f, 0.0f,
+     0.5f *scalingFactor,  0.5f * scalingFactor, -0.5f * scalingFactor, 0.0f,0.0f,-1.0f,  1.0f, 1.0f,
+     0.5f *scalingFactor,  0.5f * scalingFactor, -0.5f * scalingFactor, 0.0f,0.0f,-1.0f,  1.0f, 1.0f,
+    -0.5f *scalingFactor,  0.5f * scalingFactor, -0.5f * scalingFactor, 0.0f,0.0f,-1.0f,  0.0f, 1.0f,
+    -0.5f *scalingFactor, -0.5f * scalingFactor, -0.5f * scalingFactor, 0.0f,0.0f,-1.0f,  0.0f, 0.0f,
+	                                                   
+    -0.5f *scalingFactor, -0.5f * scalingFactor,  0.5f * scalingFactor, 0.0f,0.0f,1.0f,  0.0f, 0.0f,//front
+     0.5f *scalingFactor, -0.5f * scalingFactor,  0.5f * scalingFactor, 0.0f,0.0f,1.0f, 1.0f, 0.0f,
+     0.5f *scalingFactor,  0.5f * scalingFactor,  0.5f * scalingFactor, 0.0f,0.0f,1.0f, 1.0f, 1.0f,
+     0.5f *scalingFactor,  0.5f * scalingFactor,  0.5f * scalingFactor, 0.0f,0.0f,1.0f, 1.0f, 1.0f,
+    -0.5f *scalingFactor,  0.5f * scalingFactor,  0.5f * scalingFactor, 0.0f,0.0f,1.0f, 0.0f, 1.0f,
+    -0.5f *scalingFactor, -0.5f * scalingFactor,  0.5f * scalingFactor, 0.0f,0.0f,1.0f, 0.0f, 0.0f,
+                                                       
+    -0.5f *scalingFactor,  0.5f * scalingFactor,  0.5f * scalingFactor, -1.0f,0.0f,0,  1.0f, 0.0f,//left
+    -0.5f *scalingFactor,  0.5f * scalingFactor, -0.5f * scalingFactor, -1,0,0,  1.0f, 1.0f,
+    -0.5f *scalingFactor, -0.5f * scalingFactor, -0.5f * scalingFactor, -1,0,0,  0.0f, 1.0f,
+    -0.5f *scalingFactor, -0.5f * scalingFactor, -0.5f * scalingFactor, -1,0,0,  0.0f, 1.0f,
+    -0.5f *scalingFactor, -0.5f * scalingFactor,  0.5f * scalingFactor, -1,0,0,  0.0f, 0.0f,
+    -0.5f *scalingFactor,  0.5f * scalingFactor,  0.5f * scalingFactor, -1,0,0,  1.0f, 0.0f,
+                                                       
+     0.5f *scalingFactor,  0.5f * scalingFactor,  0.5f * scalingFactor,  1,0,0,  1.0f, 0.0f,//right
+     0.5f *scalingFactor,  0.5f * scalingFactor, -0.5f * scalingFactor,  1,0,0,  1.0f, 1.0f,
+     0.5f *scalingFactor, -0.5f * scalingFactor, -0.5f * scalingFactor,  1,0,0,  0.0f, 1.0f,
+     0.5f *scalingFactor, -0.5f * scalingFactor, -0.5f * scalingFactor,  1,0,0,  0.0f, 1.0f,
+     0.5f *scalingFactor, -0.5f * scalingFactor,  0.5f * scalingFactor,  1,0,0,  0.0f, 0.0f,
+     0.5f *scalingFactor,  0.5f * scalingFactor,  0.5f * scalingFactor,  1,0,0,  1.0f, 0.0f,
+                                                       
+    -0.5f *scalingFactor, -0.5f * scalingFactor, -0.5f * scalingFactor,  0,-1,0, 0.0f, 1.0f,//bottom
+     0.5f *scalingFactor, -0.5f * scalingFactor, -0.5f * scalingFactor,  0,-1,0, 1.0f, 1.0f,
+     0.5f *scalingFactor, -0.5f * scalingFactor,  0.5f * scalingFactor,  0,-1,0, 1.0f, 0.0f,
+     0.5f *scalingFactor, -0.5f * scalingFactor,  0.5f * scalingFactor,  0,-1,0, 1.0f, 0.0f,
+    -0.5f *scalingFactor, -0.5f * scalingFactor,  0.5f * scalingFactor,  0,-1,0, 0.0f, 0.0f,
+    -0.5f *scalingFactor, -0.5f * scalingFactor, -0.5f * scalingFactor,  0,-1,0, 0.0f, 1.0f,
+                                                       
+    -0.5f *scalingFactor,  0.5f * scalingFactor, -0.5f * scalingFactor,  0,1,0, 0.0f, 1.0f,//top
+     0.5f *scalingFactor,  0.5f * scalingFactor, -0.5f * scalingFactor,  0,1,0, 1.0f, 1.0f,
+     0.5f *scalingFactor,  0.5f * scalingFactor,  0.5f * scalingFactor,  0,1,0, 1.0f, 0.0f,
+     0.5f *scalingFactor,  0.5f * scalingFactor,  0.5f * scalingFactor,  0,1,0, 1.0f, 0.0f,
+    -0.5f *scalingFactor,  0.5f * scalingFactor,  0.5f * scalingFactor,  0,1,0, 0.0f, 0.0f,
+    -0.5f *scalingFactor,  0.5f * scalingFactor, -0.5f * scalingFactor,  0,1,0, 0.0f, 1.0f
 };
 
 typedef Angel::vec4  color4;
@@ -61,23 +61,37 @@ typedef Angel::vec3  point3;
 
 std::random_device rd;
 std::mt19937 gen(rd());
-std::uniform_int_distribution<int> distribution(1, 10);
-int random_number = distribution(gen);
+std::uniform_int_distribution<int> distribution(1, 20);
+
+int startTime = time(NULL);
+int endTime;
+
+int index = 0;
 
 float tx[20];
 float ty[20];
 float tz[20];
 float fuel = 20.0f;
 
+float tx2[10];
+float ty2[10];
+float tz2[10];
+
+
+bool isend = false;
+
 Sphere sphere1(0.5f);
 float speed = 0.1f, yaw = -90.0f;
 GLuint program, vao, vbo1, ibo1, texture_back, texture_front, texture_top, texture_bottom, vTexture, vPosition, vNormal, modelUnifrom, modelAttrib, viewUniform, projectionUniform, cameraUniform;
-GLuint vbo2, texture_ship, texture_fuel;
+GLuint vbo2, texture_ship, texture_fuel, texture_spikes;
 glm::mat4 model;
 
 glm::vec3 cameraPos, cameraTarget, cameraDirection, cameraRight, cameraUp, cameraFront;
 glm::mat4 view, projection;
 
+int random(int min, int max) {
+    return min + rand() / (RAND_MAX / (max - min + 1) + 1);
+}
 void initLight()
 {
     point4 light_direction(0.0, 0.0, -1.0, 0.0);
@@ -194,6 +208,22 @@ void initTexture()
         glGenerateMipmap(GL_TEXTURE_2D);
     }
     stbi_image_free(data6);
+	
+    //spikes
+    glGenTextures(1, &texture_spikes);
+    glBindTexture(GL_TEXTURE_2D, texture_spikes);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    unsigned char* data7 = stbi_load("metal.jpg", &width, &height, &channels, 0);
+    if (data7)
+    {
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data7);
+        glGenerateMipmap(GL_TEXTURE_2D);
+    }
+    stbi_image_free(data7);
 }
 
 
@@ -202,16 +232,76 @@ void randomsphere()
     tx[0] = 0.0f;
     ty[0] = 0.0f;
     tz[0] = 0.1f;
-    for (int i = 1; i < (float)random_number; i++)
+    for (int i = 1; i < 20; i++)
     {
+        int r;
         std::random_device rdd;
         std::mt19937 gen(rdd());
         std::uniform_real_distribution<float> distribution(0.0f, 10.0f);
 
-        tx[i] = distribution(gen);
-        ty[i] = distribution(gen);
-        tz[i] = distribution(gen);        
-    }  
+        r = random(0, 1);
+        if (r == 0)
+        {
+            tx[i] = distribution(gen) * -1;
+        }
+        else
+        {
+            tx[i] = distribution(gen);
+        }
+        r = random(0, 1);
+        if (r == 0)
+        {
+            ty[i] = distribution(gen) * -1;
+        }
+        else
+        {
+            ty[i] = distribution(gen);
+        }
+        r = random(0, 1);
+        if (r == 0)
+        {
+            tz[i] = distribution(gen) * -1;
+        }
+        else
+        {
+            tz[i] = distribution(gen);
+        }
+    }
+    for (int i = 0; i < 10; i++)
+    {
+        int r;
+        std::random_device rdd;
+        std::mt19937 gen(rdd());
+        std::uniform_real_distribution<float> distribution(0.0f, 10.0f);
+
+        r = random(0, 1);
+        if (r == 0)
+        {
+            tx2[i] = distribution(gen) * -1;
+        }
+        else
+        {
+            tx2[i] = distribution(gen);
+        }
+        r = random(0, 1);
+        if (r == 0)
+        {
+            ty2[i] = distribution(gen) * -1;
+        }
+        else
+        {
+            ty2[i] = distribution(gen);
+        }
+        r = random(0, 1);
+        if (r == 0)
+        {
+            tz2[i] = distribution(gen) * -1;
+        }
+        else
+        {
+            tz2[i] = distribution(gen);
+        }
+    }
 }
 
 
@@ -329,7 +419,6 @@ void drawskybox(glm::mat4* view)
 
 }
 
-int index = 0;
 bool checkCollision(float x1, float y1, float z1, float radius1, float x2, float y2, float z2, float radius2) {
     float dx = x1 - x2;
     float dy = y1 - y2;
@@ -349,7 +438,7 @@ void display(void)
     glUniformMatrix4fv(viewUniform, 1, GL_FALSE, glm::value_ptr(view));
     glUniform3fv(cameraUniform, 1, glm::value_ptr(cameraPos));
     glBindTexture(GL_TEXTURE_2D, texture_fuel);    
-    for (int i = 0; i < (float)random_number; i++)
+    for (int i = 0; i < 20; i++)
     {        
         draw_sphere(0.3f, 0.3f, 0.2f, tx[i], ty[i], tz[i],i);
 
@@ -359,8 +448,24 @@ void display(void)
            tx[i] = distribution(gen);
            ty[i] = distribution(gen);
            tz[i] = 0.1f;
+           fuel += 1.0f;
            index++;
            break;
+        }
+    }
+    glBindTexture(GL_TEXTURE_2D, texture_spikes);
+    for (int i = 0; i < 10; i++)
+    {
+        draw_sphere(0.1f, 0.1f, 0.1f, tx2[i], ty2[i], tz2[i], i);
+
+        if (checkCollision(cameraPos.x + cameraFront.x, cameraPos.y + cameraFront.y, cameraPos.z + cameraFront.z, 0.1f,
+            new_pos_x[i], new_pos_y[i], new_pos_z[i], 0.1f))
+        {
+            tx2[i] = distribution(gen);
+            ty2[i] = distribution(gen);
+            tz2[i] = 0.1f;
+            isend = true;
+            break;
         }
     }
 
@@ -379,7 +484,7 @@ void display(void)
 
     model = glm::mat4(1.0f);
     model = glm::translate(model, glm::vec3(0.f, -0.1f, -0.5f));
-    model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.5f));    
+    model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.7f));    
     glUniformMatrix4fv(modelUnifrom, 1, GL_FALSE, glm::value_ptr(model));
     glDrawElements(GL_TRIANGLES, sphere1.getIndexCount(), GL_UNSIGNED_INT, (void*)0);
     model = glm::mat4(1.0f);
@@ -391,30 +496,21 @@ void display(void)
     glutSwapBuffers();
 }
 
-bool isend = false;
-int timee = 0;
-
 void idle() {
     
-    
-    if (ctimee>=6000)
-    {
-        timee++;
-        ctimee = 0;
-    }
     if (fuel < 0.0f)
     {
         isend = true;
     }
     if (isend)
     {
+        endTime = time(NULL);
         std::cout << "score:" << index << " you lose" << std::endl;
-        std::cout << "time:" << timee <<" sec"<< std::endl;
-        isend = false;
+        std::cout << "time:" << endTime - startTime <<" sec"<< std::endl;
+        glutLeaveMainLoop();
     }
     else
     {
-        ctimee += 1;
         glutPostRedisplay();
     }
 }
@@ -481,30 +577,6 @@ void keyboard(unsigned char key, int x, int y)
             fuel -= 0.1f;
         }        
         break;
-
-
-   /* case 'q':
-        if (fuel > 0.0f)
-        {
-            yaw -= 5.0f;
-            cameraDirection.x = glm::cos(glm::radians(yaw));
-            cameraDirection.z = glm::sin(glm::radians(yaw));
-            cameraFront = glm::normalize(cameraDirection);
-            fuel -= 0.1f;
-        }
-       
-        break;
-    case 'e':
-        if (fuel > 0.0f)
-        {
-            yaw += 5.0f;
-            cameraDirection.x = glm::cos(glm::radians(yaw));
-            cameraDirection.z = glm::sin(glm::radians(yaw));
-            cameraFront = glm::normalize(cameraDirection);
-            fuel -= 0.1f;
-        }
-       
-        break;*/
     }
 }
 
@@ -521,11 +593,10 @@ int main(int argc, char** argv)
     glewInit();
 
     init();
-
     glutDisplayFunc(display);
     glutIdleFunc(idle);
     glutKeyboardFunc(keyboard);
-
     glutMainLoop();
+
     return 0;
 }
